@@ -467,3 +467,43 @@ PHANTOM_GUARDIAN_RITUAL = SummoningRitual(
     0,
     5,
 )
+
+resource_1 = ResourceSystem(5, 5, 5, 5, 10)
+ritual_1 = SummoningRitual(
+    "Summon Zombie Pigman",
+    "Zombie Pigman",
+    50,
+    40,
+    4,
+    0,
+    4,
+    5,
+    4
+)
+
+ritual_2 = SummoningRitual(
+    "Summon Wither Skeleton",
+    "Wither Skeleton",
+    60,
+    45,
+    4,
+    1,
+    5,
+    0,
+    5
+)
+
+print(resource_1)
+
+can_perform_1 = ritual_1.can_perform(resource_1)
+print(can_perform_1)
+
+can_perform_2 = ritual_2.can_perform(resource_1)
+print(can_perform_2)
+
+undead_1 = ritual_1.create_undead(1)
+print(undead_1)
+
+print(undead_1)
+undead_1.level_up()
+print(undead_1)

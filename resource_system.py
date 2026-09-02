@@ -262,3 +262,208 @@ class Undead:
             return self.MAXIMUM_POWER
 
         return power
+
+
+class SummoningRitual:
+    """Describes the requirements and result of a summoning ritual."""
+
+    # Task 4.3: Every ritual must require at least this much Ectoplasm.
+    MINIMUM_ECTOPLASM_COST = 1
+
+    # Task 4.3: Rune costs can be 0, so this is the minimum Rune cost.
+    MINIMUM_RUNE_COST = 0
+
+    def __init__(self, ritual_name, undead_name, starting_health,
+                 starting_power, necrotic_rune_cost, spirit_rune_cost,
+                 bone_rune_cost, flesh_rune_cost, ectoplasm_cost):
+        # Task 4.1: Store information about the ritual and its result.
+        self.__ritual_name = ritual_name
+        self.__undead_name = undead_name
+        self.__starting_health = self.__limit_starting_health(starting_health)
+        self.__starting_power = self.__limit_starting_power(starting_power)
+
+        # Task 4.2 and Task 4.3: Store resource requirements.
+        self.__necrotic_rune_cost = self.__limit_rune_cost(necrotic_rune_cost)
+        self.__spirit_rune_cost = self.__limit_rune_cost(spirit_rune_cost)
+        self.__bone_rune_cost = self.__limit_rune_cost(bone_rune_cost)
+        self.__flesh_rune_cost = self.__limit_rune_cost(flesh_rune_cost)
+        self.__ectoplasm_cost = self.__limit_ectoplasm_cost(ectoplasm_cost)
+
+    # Task 4.4: Getter methods used by read-only properties.
+    def get_ritual_name(self):
+        return self.__ritual_name
+
+    def get_undead_name(self):
+        return self.__undead_name
+
+    def get_starting_health(self):
+        return self.__starting_health
+
+    def get_starting_power(self):
+        return self.__starting_power
+
+    def get_necrotic_rune_cost(self):
+        return self.__necrotic_rune_cost
+
+    def get_spirit_rune_cost(self):
+        return self.__spirit_rune_cost
+
+    def get_bone_rune_cost(self):
+        return self.__bone_rune_cost
+
+    def get_flesh_rune_cost(self):
+        return self.__flesh_rune_cost
+
+    def get_ectoplasm_cost(self):
+        return self.__ectoplasm_cost
+
+    # Task 4.4: Read-only properties using the property() function.
+    ritual_name = property(get_ritual_name)
+    undead_name = property(get_undead_name)
+    starting_health = property(get_starting_health)
+    starting_power = property(get_starting_power)
+    necrotic_rune_cost = property(get_necrotic_rune_cost)
+    spirit_rune_cost = property(get_spirit_rune_cost)
+    bone_rune_cost = property(get_bone_rune_cost)
+    flesh_rune_cost = property(get_flesh_rune_cost)
+    ectoplasm_cost = property(get_ectoplasm_cost)
+
+    def can_perform(self, resources):
+        # Task 4.5: Require a valid resource object before checking costs.
+        if not isinstance(resources, ResourceSystem):
+            return False
+
+        return resources.has_required_resources(
+            self.__necrotic_rune_cost,
+            self.__spirit_rune_cost,
+            self.__bone_rune_cost,
+            self.__flesh_rune_cost,
+            self.__ectoplasm_cost,
+        )
+
+    def consume_required_resources(self, resources):
+        # Task 4.6: Delegate resource spending to the ResourceSystem object.
+        if not isinstance(resources, ResourceSystem):
+            return False
+
+        return resources.spend_resources(
+            self.__necrotic_rune_cost,
+            self.__spirit_rune_cost,
+            self.__bone_rune_cost,
+            self.__flesh_rune_cost,
+            self.__ectoplasm_cost,
+        )
+
+    def create_undead(self, unit_identifier):
+        # Task 4.7: Create an Undead using this ritual's summon details.
+        return Undead(
+            unit_identifier,
+            self.__undead_name,
+            self.__starting_health,
+            self.__starting_power,
+        )
+
+    def __str__(self):
+        return (
+            f"Ritual: {self.__ritual_name}\n"
+            f"Creates: {self.__undead_name}\n"
+            f"Starting Health: {self.__starting_health}\n"
+            f"Starting Power: {self.__starting_power}\n"
+            f"Necrotic Rune Cost: {self.__necrotic_rune_cost}\n"
+            f"Spirit Rune Cost: {self.__spirit_rune_cost}\n"
+            f"Bone Rune Cost: {self.__bone_rune_cost}\n"
+            f"Flesh Rune Cost: {self.__flesh_rune_cost}\n"
+            f"Ectoplasm Cost: {self.__ectoplasm_cost}"
+        )
+
+    def __limit_rune_cost(self, rune_cost):
+        if type(rune_cost) is not int:
+            return self.MINIMUM_RUNE_COST
+
+        if rune_cost < self.MINIMUM_RUNE_COST:
+            return self.MINIMUM_RUNE_COST
+
+        return rune_cost
+
+    def __limit_ectoplasm_cost(self, ectoplasm_cost):
+        if type(ectoplasm_cost) is not int:
+            return self.MINIMUM_ECTOPLASM_COST
+
+        if ectoplasm_cost < self.MINIMUM_ECTOPLASM_COST:
+            return self.MINIMUM_ECTOPLASM_COST
+
+        return ectoplasm_cost
+
+    def __limit_starting_health(self, starting_health):
+        if type(starting_health) is not int:
+            return Undead.MINIMUM_HEALTH
+
+        if starting_health < Undead.MINIMUM_HEALTH:
+            return Undead.MINIMUM_HEALTH
+
+        if starting_health > Undead.MAXIMUM_HEALTH:
+            return Undead.MAXIMUM_HEALTH
+
+        return starting_health
+
+    def __limit_starting_power(self, starting_power):
+        if type(starting_power) is not int:
+            return Undead.MINIMUM_POWER
+
+        if starting_power < Undead.MINIMUM_POWER:
+            return Undead.MINIMUM_POWER
+
+        if starting_power > Undead.MAXIMUM_POWER:
+            return Undead.MAXIMUM_POWER
+
+        return starting_power
+
+
+# Task 4.8: Create at least four ritual objects.
+SKELETON_WARRIOR_RITUAL = SummoningRitual(
+    "Raise Skeleton Warrior",
+    "Skeleton Warrior",
+    30,
+    15,
+    1,
+    0,
+    3,
+    0,
+    2,
+)
+
+VENGEFUL_GHOST_RITUAL = SummoningRitual(
+    "Bind Vengeful Ghost",
+    "Vengeful Ghost",
+    20,
+    30,
+    2,
+    4,
+    0,
+    0,
+    3,
+)
+
+PUTRID_ZOMBIE_RITUAL = SummoningRitual(
+    "Raise Putrid Zombie",
+    "Putrid Zombie",
+    45,
+    10,
+    1,
+    0,
+    1,
+    4,
+    2,
+)
+
+PHANTOM_GUARDIAN_RITUAL = SummoningRitual(
+    "Summon Phantom Guardian",
+    "Phantom Guardian",
+    60,
+    35,
+    3,
+    5,
+    2,
+    0,
+    5,
+)

@@ -591,34 +591,76 @@ PHANTOM_GUARDIAN_RITUAL = SummoningRitual(
 )
 
 
+def display_controlled_undead(necromancer):
+    if len(necromancer.controlled_undead) == 0:
+        print("No controlled undead.")
+    else:
+        for undead in necromancer.controlled_undead:
+            print(undead)
+            print()
+
+
 necromancer = Necromancer("Morgath", 5, 5, 5, 5, 10)
 
+print("Starting necromancer:")
 print(necromancer)
 
+print()
+print("Successful summons:")
 skeleton = necromancer.summon_undead(SKELETON_WARRIOR_RITUAL)
 ghost = necromancer.summon_undead(VENGEFUL_GHOST_RITUAL)
+zombie = necromancer.summon_undead(PUTRID_ZOMBIE_RITUAL)
 
-print()
-print("Summoned:")
 print(skeleton)
 print()
 print(ghost)
+print()
+print(zombie)
 
 print()
-print("After summoning:")
+print("After successful summons:")
 print(necromancer)
+print()
+print(f"Controlled undead count: {len(necromancer.controlled_undead)}")
 
-if skeleton is not None:
-    necromancer.level_controlled_undead(skeleton.unit_identifier)
-    print()
-    print("After levelling the skeleton:")
-    print(skeleton)
+print()
+print("Attempting Phantom Guardian without enough resources:")
+resources_before_failed_ritual = str(necromancer.resources)
+phantom = necromancer.summon_undead(PHANTOM_GUARDIAN_RITUAL)
+resources_after_failed_ritual = str(necromancer.resources)
+print(f"Phantom Guardian summoned: {phantom is not None}")
+print(
+    f"Resources unchanged: {resources_before_failed_ritual == resources_after_failed_ritual}")
+print(necromancer.resources)
 
-if ghost is not None:
-    dismissed = necromancer.dismiss_undead(ghost.unit_identifier)
-    print()
-    print(f"Ghost dismissed: {dismissed}")
+print()
+print("Collecting additional resources:")
+necromancer.collect_resources(2, 4, 1, 0, 2)
+print(necromancer.resources)
+
+print()
+print("Attempting Phantom Guardian again:")
+phantom = necromancer.summon_undead(PHANTOM_GUARDIAN_RITUAL)
+print(f"Phantom Guardian summoned: {phantom is not None}")
+print(phantom)
+
+print()
+print("Skeleton before levelling:")
+print(skeleton)
+necromancer.level_controlled_undead(skeleton.unit_identifier)
+print()
+print("Skeleton after levelling through the necromancer:")
+print(skeleton)
+
+print()
+print("Dismissing the Vengeful Ghost:")
+dismissed = necromancer.dismiss_undead(ghost.unit_identifier)
+print(f"Dismissed: {dismissed}")
+print(f"Controlled undead count: {len(necromancer.controlled_undead)}")
 
 print()
 print("Final necromancer state:")
 print(necromancer)
+print()
+print("Remaining controlled undead:")
+display_controlled_undead(necromancer)

@@ -183,28 +183,29 @@ class Undead:
     STARTING_LEVEL = 1
 
     def __init__(self, unit_identifier, name, health, power):
-        # Task 3.1: Store the undead identifier, name, health, power, and level as private attributes.
+        # The identifier is private because subclasses do not need to change it.
+        # The remaining state is protected so inherited behaviour can use it.
         self.__unit_identifier = unit_identifier
-        self.__name = name
-        self.__health = self.__limit_health(health)
-        self.__power = self.__limit_power(power)
-        self.__level = self.STARTING_LEVEL
+        self._name = name
+        self._health = self.__limit_health(health)
+        self._power = self.__limit_power(power)
+        self._level = self.STARTING_LEVEL
 
     # Task 3.5: Getter methods used by read-only properties.
     def get_unit_identifier(self):
         return self.__unit_identifier
 
     def get_name(self):
-        return self.__name
+        return self._name
 
     def get_health(self):
-        return self.__health
+        return self._health
 
     def get_power(self):
-        return self.__power
+        return self._power
 
     def get_level(self):
-        return self.__level
+        return self._level
 
     # Task 3.5: Read-only properties using the property() function.
     unit_identifier = property(get_unit_identifier)
@@ -215,28 +216,32 @@ class Undead:
 
     def level_up(self):
         # Task 3.6: Prevent the undead from exceeding the maximum level.
-        if self.__level >= self.MAXIMUM_LEVEL:
+        if self._level >= self.MAXIMUM_LEVEL:
             return False
 
         # Task 3.6: Increase level, health, and power.
-        self.__level += 1
-        self.__health += self.HEALTH_GAINED_PER_LEVEL
-        self.__power += self.POWER_GAINED_PER_LEVEL
+        self._level += 1
+        self._health += self.HEALTH_GAINED_PER_LEVEL
+        self._power += self.POWER_GAINED_PER_LEVEL
 
         # Task 3.6: Prevent health and power from exceeding maximum values.
-        self.__health = self.__limit_health(self.__health)
-        self.__power = self.__limit_power(self.__power)
+        self._health = self.__limit_health(self._health)
+        self._power = self.__limit_power(self._power)
 
         return True
+
+    def command(self):
+        """Return behaviour shared by every undead summon."""
+        return f"{self._name} awaits its necromancer's command."
 
     def __str__(self):
         # Task 3.7: Display the identifier, name, level, health, and power.
         return (
             f"Undead ID: {self.__unit_identifier}\n"
-            f"Name: {self.__name}\n"
-            f"Level: {self.__level}/{self.MAXIMUM_LEVEL}\n"
-            f"Health: {self.__health}/{self.MAXIMUM_HEALTH}\n"
-            f"Power: {self.__power}/{self.MAXIMUM_POWER}"
+            f"Name: {self._name}\n"
+            f"Level: {self._level}/{self.MAXIMUM_LEVEL}\n"
+            f"Health: {self._health}/{self.MAXIMUM_HEALTH}\n"
+            f"Power: {self._power}/{self.MAXIMUM_POWER}"
         )
 
     def __limit_health(self, health):
@@ -264,6 +269,112 @@ class Undead:
         return power
 
 
+class WarriorUndead(Undead):
+    """Represents an undead creature specialised for battle."""
+
+    def __init__(self, unit_identifier, name, health, power):
+        super().__init__(unit_identifier, name, health, power)
+
+    def command(self):
+        parent_command = super().command()
+        return f"{parent_command} It raises its weapon, ready for battle."
+
+
+class CursedUndead(Undead):
+    """Represents an undead creature empowered by a curse."""
+
+    def __init__(self, unit_identifier, name, health, power):
+        super().__init__(unit_identifier, name, health, power)
+
+    def command(self):
+        parent_command = super().command()
+        return f"{parent_command} Cursed energy gathers around it."
+
+
+class SkeletonWarrior(WarriorUndead):
+    """A lightly armoured warrior raised from bones."""
+
+    SUMMON_NAME = "Skeleton Warrior"
+    MINIMUM_HEALTH = Undead.MINIMUM_HEALTH
+    MAXIMUM_HEALTH = Undead.MAXIMUM_HEALTH
+    MINIMUM_POWER = Undead.MINIMUM_POWER
+    MAXIMUM_POWER = Undead.MAXIMUM_POWER
+    STARTING_HEALTH = 30
+    STARTING_POWER = 15
+
+    def __init__(self, unit_identifier):
+        super().__init__(
+            unit_identifier,
+            self.SUMMON_NAME,
+            self.STARTING_HEALTH,
+            self.STARTING_POWER,
+        )
+
+
+class VengefulGhost(CursedUndead):
+    """A spirit bound to the world by vengeance."""
+
+    SUMMON_NAME = "Vengeful Ghost"
+    MINIMUM_HEALTH = Undead.MINIMUM_HEALTH
+    MAXIMUM_HEALTH = Undead.MAXIMUM_HEALTH
+    MINIMUM_POWER = Undead.MINIMUM_POWER
+    MAXIMUM_POWER = Undead.MAXIMUM_POWER
+    STARTING_HEALTH = 20
+    STARTING_POWER = 30
+
+    def __init__(self, unit_identifier):
+        super().__init__(
+            unit_identifier,
+            self.SUMMON_NAME,
+            self.STARTING_HEALTH,
+            self.STARTING_POWER,
+        )
+
+
+class PutridZombie(Undead):
+    """A resilient corpse animated by necromancy."""
+
+    SUMMON_NAME = "Putrid Zombie"
+    MINIMUM_HEALTH = Undead.MINIMUM_HEALTH
+    MAXIMUM_HEALTH = Undead.MAXIMUM_HEALTH
+    MINIMUM_POWER = Undead.MINIMUM_POWER
+    MAXIMUM_POWER = Undead.MAXIMUM_POWER
+    STARTING_HEALTH = 45
+    STARTING_POWER = 10
+
+    def __init__(self, unit_identifier):
+        super().__init__(
+            unit_identifier,
+            self.SUMMON_NAME,
+            self.STARTING_HEALTH,
+            self.STARTING_POWER,
+        )
+
+    def command(self):
+        parent_command = super().command()
+        return f"{parent_command} It shambles forward relentlessly."
+
+
+class PhantomGuardian(WarriorUndead):
+    """A powerful spectral warrior summoned to guard its master."""
+
+    SUMMON_NAME = "Phantom Guardian"
+    MINIMUM_HEALTH = Undead.MINIMUM_HEALTH
+    MAXIMUM_HEALTH = Undead.MAXIMUM_HEALTH
+    MINIMUM_POWER = Undead.MINIMUM_POWER
+    MAXIMUM_POWER = Undead.MAXIMUM_POWER
+    STARTING_HEALTH = 60
+    STARTING_POWER = 35
+
+    def __init__(self, unit_identifier):
+        super().__init__(
+            unit_identifier,
+            self.SUMMON_NAME,
+            self.STARTING_HEALTH,
+            self.STARTING_POWER,
+        )
+
+
 class SummoningRitual:
     """Describes the requirements and result of a summoning ritual."""
 
@@ -273,14 +384,17 @@ class SummoningRitual:
     # Task 4.3: Rune costs can be 0, so this is the minimum Rune cost.
     MINIMUM_RUNE_COST = 0
 
-    def __init__(self, ritual_name, undead_name, starting_health,
-                 starting_power, necrotic_rune_cost, spirit_rune_cost,
-                 bone_rune_cost, flesh_rune_cost, ectoplasm_cost):
+    def __init__(self, ritual_name, summon_class, necrotic_rune_cost,
+                 spirit_rune_cost, bone_rune_cost, flesh_rune_cost,
+                 ectoplasm_cost):
         # Task 4.1: Store information about the ritual and its result.
+        if not isinstance(summon_class, type) or not issubclass(
+            summon_class, Undead
+        ):
+            raise TypeError("summon_class must inherit from Undead")
+
         self.__ritual_name = ritual_name
-        self.__undead_name = undead_name
-        self.__starting_health = self.__limit_starting_health(starting_health)
-        self.__starting_power = self.__limit_starting_power(starting_power)
+        self.__summon_class = summon_class
 
         # Task 4.2 and Task 4.3: Store resource requirements.
         self.__necrotic_rune_cost = self.__limit_rune_cost(necrotic_rune_cost)
@@ -293,14 +407,17 @@ class SummoningRitual:
     def get_ritual_name(self):
         return self.__ritual_name
 
+    def get_summon_class(self):
+        return self.__summon_class
+
     def get_undead_name(self):
-        return self.__undead_name
+        return self.__summon_class.SUMMON_NAME
 
     def get_starting_health(self):
-        return self.__starting_health
+        return self.__summon_class.STARTING_HEALTH
 
     def get_starting_power(self):
-        return self.__starting_power
+        return self.__summon_class.STARTING_POWER
 
     def get_necrotic_rune_cost(self):
         return self.__necrotic_rune_cost
@@ -319,6 +436,7 @@ class SummoningRitual:
 
     # Task 4.4: Read-only properties using the property() function.
     ritual_name = property(get_ritual_name)
+    summon_class = property(get_summon_class)
     undead_name = property(get_undead_name)
     starting_health = property(get_starting_health)
     starting_power = property(get_starting_power)
@@ -355,20 +473,15 @@ class SummoningRitual:
         )
 
     def create_undead(self, unit_identifier):
-        # Task 4.7: Create an Undead using this ritual's summon details.
-        return Undead(
-            unit_identifier,
-            self.__undead_name,
-            self.__starting_health,
-            self.__starting_power,
-        )
+        # Task 4.7: Create the specialised undead selected by this ritual.
+        return self.__summon_class(unit_identifier)
 
     def __str__(self):
         return (
             f"Ritual: {self.__ritual_name}\n"
-            f"Creates: {self.__undead_name}\n"
-            f"Starting Health: {self.__starting_health}\n"
-            f"Starting Power: {self.__starting_power}\n"
+            f"Creates: {self.__summon_class.SUMMON_NAME}\n"
+            f"Starting Health: {self.__summon_class.STARTING_HEALTH}\n"
+            f"Starting Power: {self.__summon_class.STARTING_POWER}\n"
             f"Necrotic Rune Cost: {self.__necrotic_rune_cost}\n"
             f"Spirit Rune Cost: {self.__spirit_rune_cost}\n"
             f"Bone Rune Cost: {self.__bone_rune_cost}\n"
@@ -393,31 +506,6 @@ class SummoningRitual:
             return self.MINIMUM_ECTOPLASM_COST
 
         return ectoplasm_cost
-
-    def __limit_starting_health(self, starting_health):
-        if type(starting_health) is not int:
-            return Undead.MINIMUM_HEALTH
-
-        if starting_health < Undead.MINIMUM_HEALTH:
-            return Undead.MINIMUM_HEALTH
-
-        if starting_health > Undead.MAXIMUM_HEALTH:
-            return Undead.MAXIMUM_HEALTH
-
-        return starting_health
-
-    def __limit_starting_power(self, starting_power):
-        if type(starting_power) is not int:
-            return Undead.MINIMUM_POWER
-
-        if starting_power < Undead.MINIMUM_POWER:
-            return Undead.MINIMUM_POWER
-
-        if starting_power > Undead.MAXIMUM_POWER:
-            return Undead.MAXIMUM_POWER
-
-        return starting_power
-
 
 class Necromancer:
     """Coordinates resources, rituals, and controlled undead summons."""
@@ -544,9 +632,7 @@ class Necromancer:
 # Task 4.8: Create at least four ritual objects.
 SKELETON_WARRIOR_RITUAL = SummoningRitual(
     "Raise Skeleton Warrior",
-    "Skeleton Warrior",
-    30,
-    15,
+    SkeletonWarrior,
     1,
     0,
     3,
@@ -556,9 +642,7 @@ SKELETON_WARRIOR_RITUAL = SummoningRitual(
 
 VENGEFUL_GHOST_RITUAL = SummoningRitual(
     "Bind Vengeful Ghost",
-    "Vengeful Ghost",
-    20,
-    30,
+    VengefulGhost,
     2,
     4,
     0,
@@ -568,9 +652,7 @@ VENGEFUL_GHOST_RITUAL = SummoningRitual(
 
 PUTRID_ZOMBIE_RITUAL = SummoningRitual(
     "Raise Putrid Zombie",
-    "Putrid Zombie",
-    45,
-    10,
+    PutridZombie,
     1,
     0,
     1,
@@ -580,9 +662,7 @@ PUTRID_ZOMBIE_RITUAL = SummoningRitual(
 
 PHANTOM_GUARDIAN_RITUAL = SummoningRitual(
     "Summon Phantom Guardian",
-    "Phantom Guardian",
-    60,
-    35,
+    PhantomGuardian,
     3,
     5,
     2,

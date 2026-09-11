@@ -95,7 +95,7 @@
     <line class="rule" x1="850" y1="914" x2="1530" y2="914"/>
     <text class="class-name" x="1190" y="561">Undead</text>
     <text class="member" x="865" y="620">-unit_identifier: int</text>
-    <text class="member" x="865" y="651">-name: str</text>
+    <text class="member" x="865" y="651">#name: str</text>
     <text class="member" x="865" y="682">#level: int</text>
     <text class="member" x="865" y="713">#health: int</text>
     <text class="member" x="865" y="744">#power: int</text>

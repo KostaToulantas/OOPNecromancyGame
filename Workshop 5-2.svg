@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2550" height="2040" viewBox="0 0 2550 2040">
+  <defs>
+    <style>
+      .background { fill: #000000; }
+      .box, .rule, .relation { fill: none; stroke: #d8d8d8; stroke-width: 3; }
+      .dependency { fill: none; stroke: #d8d8d8; stroke-width: 3; stroke-dasharray: 10 8; }
+      .diamond { fill: #000000; stroke: #d8d8d8; stroke-width: 3; }
+      .composition { fill: #d8d8d8; stroke: #d8d8d8; stroke-width: 3; }
+      text { fill: #ededed; font-family: "Segoe UI", Arial, sans-serif; }
+      .class-name { font-size: 30px; font-weight: 650; text-anchor: middle; }
+      .member { font-size: 24px; font-weight: 450; }
+      .relationship-label { font-size: 26px; font-weight: 600; }
+      .multiplicity { font-size: 25px; font-weight: 600; }
+      .static { text-decoration: underline; }
+    </style>
+    <marker id="generalization" viewBox="0 0 16 16" refX="15" refY="8" markerWidth="16" markerHeight="16" orient="auto">
+      <path d="M 0 0 L 16 8 L 0 16 Z" fill="#000000" stroke="#d8d8d8" stroke-width="1.8"/>
+    </marker>
+    <marker id="open-arrow" viewBox="0 0 16 16" refX="15" refY="8" markerWidth="15" markerHeight="15" orient="auto">
+      <path d="M 1 1 L 15 8 L 1 15" fill="none" stroke="#d8d8d8" stroke-width="2"/>
+    </marker>
+  </defs>
+
+  <rect class="background" width="2550" height="2040"/>
+
+  <!-- Existing object relationships -->
+  <path class="relation" d="M 770 195 H 1600"/>
+  <path class="composition" d="M 730 195 L 750 178 L 770 195 L 750 212 Z"/>
+  <text class="relationship-label" x="1195" y="177">owns</text>
+  <text class="multiplicity" x="782" y="228">1</text>
+  <text class="multiplicity" x="1568" y="228">1</text>
+
+  <path class="relation" d="M 780 350 H 815 V 760 H 850"/>
+  <path class="diamond" d="M 740 350 L 760 333 L 780 350 L 760 367 Z"/>
+  <text class="relationship-label" x="790" y="328">controls</text>
+  <text class="multiplicity" x="783" y="386">1</text>
+  <text class="multiplicity" x="858" y="748">0..*</text>
+
+  <path class="relation" d="M 390 390 V 482 H 1570 V 765 H 1660"/>
+  <text class="relationship-label" x="960" y="468">uses</text>
+  <text class="multiplicity" x="405" y="478">1</text>
+  <text class="multiplicity" x="1610" y="752">0..*</text>
+
+  <path class="dependency" d="M 2140 600 V 510" marker-end="url(#open-arrow)"/>
+  <text class="relationship-label" x="2162" y="565">checks</text>
+
+  <path class="dependency" d="M 1660 825 H 1530" marker-end="url(#open-arrow)"/>
+  <text class="relationship-label" x="1544" y="807">creates</text>
+
+  <!-- Generalization relationships -->
+  <path class="relation" d="M 560 1220 V 1150 H 990 V 1080" marker-end="url(#generalization)"/>
+  <path class="relation" d="M 1260 1220 V 1080" marker-end="url(#generalization)"/>
+  <path class="relation" d="M 2055 1180 V 1140 H 1430 V 1080" marker-end="url(#generalization)"/>
+
+  <path class="relation" d="M 335 1590 V 1530 H 480 V 1420" marker-end="url(#generalization)"/>
+  <path class="relation" d="M 955 1590 V 1530 H 640 V 1420" marker-end="url(#generalization)"/>
+  <path class="relation" d="M 1595 1590 V 1530 H 1260 V 1420" marker-end="url(#generalization)"/>
+
+  <!-- Necromancer -->
+  <g id="Necromancer">
+    <rect class="box" x="50" y="80" width="680" height="310"/>
+    <line class="rule" x1="50" y1="140" x2="730" y2="140"/>
+    <line class="rule" x1="50" y1="304" x2="730" y2="304"/>
+    <text class="class-name" x="390" y="120">Necromancer</text>
+    <text class="member" x="65" y="178">-necromancer_id: int</text>
+    <text class="member" x="65" y="215">-name: str</text>
+    <text class="member" x="65" y="252">-resources: ResourcePool</text>
+    <text class="member" x="65" y="289">-undead_army: List&lt;Undead&gt;</text>
+    <text class="member" x="65" y="350">+summon(ritual: SummoningRitual, undead_id: int): Undead</text>
+  </g>
+
+  <!-- ResourcePool -->
+  <g id="ResourcePool">
+    <rect class="box" x="1600" y="55" width="910" height="455"/>
+    <line class="rule" x1="1600" y1="115" x2="2510" y2="115"/>
+    <line class="rule" x1="1600" y1="310" x2="2510" y2="310"/>
+    <text class="class-name" x="2055" y="96">ResourcePool</text>
+    <text class="member" x="1615" y="154">-ectoplasm: int</text>
+    <text class="member" x="1615" y="191">-necrotic_runes: int</text>
+    <text class="member" x="1615" y="228">-spirit_runes: int</text>
+    <text class="member" x="1615" y="265">-bone_runes: int</text>
+    <text class="member" x="1615" y="302">-flesh_runes: int</text>
+    <text class="member" x="1615" y="350">+collect_resources(resource_type: str, amount: int): void</text>
+    <text class="member" x="1615" y="385">+has_resources(ectoplasm: int, necrotic: int, spirit: int,</text>
+    <text class="member" x="1640" y="416">bone: int, flesh: int): bool</text>
+    <text class="member" x="1615" y="451">+spend_resources(ectoplasm: int, necrotic: int, spirit: int,</text>
+    <text class="member" x="1640" y="482">bone: int, flesh: int): bool</text>
+  </g>
+
+  <!-- Undead generalization -->
+  <g id="Undead">
+    <rect class="box" x="850" y="520" width="680" height="560"/>
+    <line class="rule" x1="850" y1="580" x2="1530" y2="580"/>
+    <line class="rule" x1="850" y1="914" x2="1530" y2="914"/>
+    <text class="class-name" x="1190" y="561">Undead</text>
+    <text class="member" x="865" y="620">-unit_identifier: int</text>
+    <text class="member" x="865" y="651">-name: str</text>
+    <text class="member" x="865" y="682">#level: int</text>
+    <text class="member" x="865" y="713">#health: int</text>
+    <text class="member" x="865" y="744">#power: int</text>
+    <text class="member static" x="865" y="775">#MINIMUM_HEALTH: int</text>
+    <text class="member static" x="865" y="806">#MAXIMUM_HEALTH: int</text>
+    <text class="member static" x="865" y="837">#MINIMUM_POWER: int</text>
+    <text class="member static" x="865" y="868">#MAXIMUM_POWER: int</text>
+    <text class="member static" x="865" y="899">#MAXIMUM_LEVEL: int</text>
+    <text class="member" x="865" y="954">+__init__(unit_identifier: int, name: str, health: int, power: int)</text>
+    <text class="member" x="865" y="993">+level_up(): bool</text>
+    <text class="member" x="865" y="1032">+command(): str</text>
+  </g>
+
+  <!-- SummoningRitual -->
+  <g id="SummoningRitual">
+    <rect class="box" x="1660" y="600" width="870" height="510"/>
+    <line class="rule" x1="1660" y1="660" x2="2530" y2="660"/>
+    <line class="rule" x1="1660" y1="930" x2="2530" y2="930"/>
+    <text class="class-name" x="2095" y="641">SummoningRitual</text>
+    <text class="member" x="1675" y="700">-ritual_name: str</text>
+    <text class="member" x="1675" y="737">-summon_class: type&lt;Undead&gt;</text>
+    <text class="member" x="1675" y="774">-ectoplasm_cost: int</text>
+    <text class="member" x="1675" y="811">-necrotic_rune_cost: int</text>
+    <text class="member" x="1675" y="848">-spirit_rune_cost: int</text>
+    <text class="member" x="1675" y="885">-bone_rune_cost: int</text>
+    <text class="member" x="1675" y="922">-flesh_rune_cost: int</text>
+    <text class="member" x="1675" y="970">+requirements_met(resources: ResourcePool): bool</text>
+    <text class="member" x="1675" y="1009">+perform(resources: ResourcePool, undead_id: int): Undead</text>
+    <text class="member" x="1675" y="1048">+create_summon(undead_id: int): Undead</text>
+  </g>
+
+  <!-- Intermediate specializations -->
+  <g id="WarriorUndead">
+    <rect class="box" x="260" y="1220" width="600" height="200"/>
+    <line class="rule" x1="260" y1="1280" x2="860" y2="1280"/>
+    <text class="class-name" x="560" y="1261">WarriorUndead</text>
+    <text class="member" x="275" y="1325">+__init__(unit_identifier: int, name: str, health: int, power: int)</text>
+    <text class="member" x="275" y="1366">+command(): str</text>
+  </g>
+
+  <g id="CursedUndead">
+    <rect class="box" x="960" y="1220" width="600" height="200"/>
+    <line class="rule" x1="960" y1="1280" x2="1560" y2="1280"/>
+    <text class="class-name" x="1260" y="1261">CursedUndead</text>
+    <text class="member" x="975" y="1325">+__init__(unit_identifier: int, name: str, health: int, power: int)</text>
+    <text class="member" x="975" y="1366">+command(): str</text>
+  </g>
+
+  <!-- Direct specialization -->
+  <g id="PutridZombie">
+    <rect class="box" x="1730" y="1180" width="650" height="380"/>
+    <line class="rule" x1="1730" y1="1240" x2="2380" y2="1240"/>
+    <line class="rule" x1="1730" y1="1465" x2="2380" y2="1465"/>
+    <text class="class-name" x="2055" y="1221">PutridZombie</text>
+    <text class="member static" x="1745" y="1280">#MINIMUM_HEALTH: int</text>
+    <text class="member static" x="1745" y="1316">#MAXIMUM_HEALTH: int</text>
+    <text class="member static" x="1745" y="1352">#MINIMUM_POWER: int</text>
+    <text class="member static" x="1745" y="1388">#MAXIMUM_POWER: int</text>
+    <text class="member static" x="1745" y="1424">#STARTING_HEALTH: int = 45</text>
+    <text class="member static" x="1745" y="1460">#STARTING_POWER: int = 10</text>
+    <text class="member" x="1745" y="1512">+__init__(unit_identifier: int)</text>
+    <text class="member" x="1745" y="1548">+command(): str</text>
+  </g>
+
+  <!-- Concrete warrior summons -->
+  <g id="SkeletonWarrior">
+    <rect class="box" x="40" y="1590" width="590" height="400"/>
+    <line class="rule" x1="40" y1="1650" x2="630" y2="1650"/>
+    <line class="rule" x1="40" y1="1875" x2="630" y2="1875"/>
+    <text class="class-name" x="335" y="1631">SkeletonWarrior</text>
+    <text class="member static" x="55" y="1690">#MINIMUM_HEALTH: int</text>
+    <text class="member static" x="55" y="1726">#MAXIMUM_HEALTH: int</text>
+    <text class="member static" x="55" y="1762">#MINIMUM_POWER: int</text>
+    <text class="member static" x="55" y="1798">#MAXIMUM_POWER: int</text>
+    <text class="member static" x="55" y="1834">#STARTING_HEALTH: int = 30</text>
+    <text class="member static" x="55" y="1870">#STARTING_POWER: int = 15</text>
+    <text class="member" x="55" y="1923">+__init__(unit_identifier: int)</text>
+  </g>
+
+  <g id="PhantomGuardian">
+    <rect class="box" x="650" y="1590" width="610" height="400"/>
+    <line class="rule" x1="650" y1="1650" x2="1260" y2="1650"/>
+    <line class="rule" x1="650" y1="1875" x2="1260" y2="1875"/>
+    <text class="class-name" x="955" y="1631">PhantomGuardian</text>
+    <text class="member static" x="665" y="1690">#MINIMUM_HEALTH: int</text>
+    <text class="member static" x="665" y="1726">#MAXIMUM_HEALTH: int</text>
+    <text class="member static" x="665" y="1762">#MINIMUM_POWER: int</text>
+    <text class="member static" x="665" y="1798">#MAXIMUM_POWER: int</text>
+    <text class="member static" x="665" y="1834">#STARTING_HEALTH: int = 60</text>
+    <text class="member static" x="665" y="1870">#STARTING_POWER: int = 35</text>
+    <text class="member" x="665" y="1923">+__init__(unit_identifier: int)</text>
+  </g>
+
+  <!-- Concrete cursed summon -->
+  <g id="VengefulGhost">
+    <rect class="box" x="1300" y="1590" width="590" height="400"/>
+    <line class="rule" x1="1300" y1="1650" x2="1890" y2="1650"/>
+    <line class="rule" x1="1300" y1="1875" x2="1890" y2="1875"/>
+    <text class="class-name" x="1595" y="1631">VengefulGhost</text>
+    <text class="member static" x="1315" y="1690">#MINIMUM_HEALTH: int</text>
+    <text class="member static" x="1315" y="1726">#MAXIMUM_HEALTH: int</text>
+    <text class="member static" x="1315" y="1762">#MINIMUM_POWER: int</text>
+    <text class="member static" x="1315" y="1798">#MAXIMUM_POWER: int</text>
+    <text class="member static" x="1315" y="1834">#STARTING_HEALTH: int = 20</text>
+    <text class="member static" x="1315" y="1870">#STARTING_POWER: int = 30</text>
+    <text class="member" x="1315" y="1923">+__init__(unit_identifier: int)</text>
+  </g>
+</svg>

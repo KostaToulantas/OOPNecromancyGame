@@ -113,6 +113,10 @@ class WarriorUndead(Undead):
         parent_command = super().command()
         return f"{parent_command} It raises its weapon, ready for battle."
 
+    def combat_style(self):
+        """Describe the warrior's direct martial combat."""
+        return "Fights in direct martial combat with weapons and physical strength."
+
 
 class CursedUndead(Undead):
     """Represents an undead creature empowered by a curse."""
@@ -123,6 +127,32 @@ class CursedUndead(Undead):
     def command(self):
         parent_command = super().command()
         return f"{parent_command} Cursed energy gathers around it."
+
+    def combat_style(self):
+        """Describe combat powered by curses and supernatural energy."""
+        return "Fights with curses and supernatural energy."
+
+
+class DeathKnight(WarriorUndead, CursedUndead):
+    """A powerful cursed warrior combining both undead lineages."""
+
+    SUMMON_NAME = "Death Knight"
+    MINIMUM_HEALTH = 10
+    MAXIMUM_HEALTH = 250
+    MINIMUM_POWER = 5
+    MAXIMUM_POWER = 200
+    STARTING_HEALTH = 80
+    STARTING_POWER = 50
+    HEALTH_GAINED_PER_LEVEL = 20
+    POWER_GAINED_PER_LEVEL = 20
+
+    def __init__(self, unit_identifier):
+        super().__init__(
+            unit_identifier,
+            self.SUMMON_NAME,
+            self.STARTING_HEALTH,
+            self.STARTING_POWER,
+        )
 
 
 class SkeletonWarrior(WarriorUndead):

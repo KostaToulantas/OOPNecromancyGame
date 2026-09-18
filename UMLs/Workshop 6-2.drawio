@@ -1,0 +1,239 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="project2-deathknight" name="Project 2 - DeathKnight">
+    <mxGraphModel dx="4670" dy="2815" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2550" pageHeight="2700" background="light-dark(#FFFFFF,#000000)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Necromancer" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="310" width="680" x="50" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Necromancer-title" parent="Necromancer" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="Necromancer" vertex="1">
+          <mxGeometry height="60" width="680" as="geometry" />
+        </mxCell>
+        <mxCell id="Necromancer-attributes" parent="Necromancer" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=23;align=left;verticalAlign=top;spacing=12;" value="-necromancer_id: int&lt;br&gt;-name: str&lt;br&gt;-resources: ResourcePool&lt;br&gt;-undead_army: List&amp;lt;Undead&amp;gt;" vertex="1">
+          <mxGeometry height="164" width="680" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Necromancer-operations" parent="Necromancer" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+summon(ritual: SummoningRitual, undead_id: int): Undead" vertex="1">
+          <mxGeometry height="86" width="680" y="224" as="geometry" />
+        </mxCell>
+        <mxCell id="ResourcePool" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="455" width="910" x="1600" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ResourcePool-title" parent="ResourcePool" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="ResourcePool" vertex="1">
+          <mxGeometry height="60" width="910" as="geometry" />
+        </mxCell>
+        <mxCell id="ResourcePool-attributes" parent="ResourcePool" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=23;align=left;verticalAlign=top;spacing=12;" value="-ectoplasm: int&lt;br&gt;-necrotic_runes: int&lt;br&gt;-spirit_runes: int&lt;br&gt;-bone_runes: int&lt;br&gt;-flesh_runes: int" vertex="1">
+          <mxGeometry height="200" width="910" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ResourcePool-operations" parent="ResourcePool" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+collect_resources(resource_type: str, amount: int): void&lt;br&gt;+has_resources(ectoplasm: int, necrotic: int, spirit: int,&lt;br&gt;bone: int, flesh: int): bool&lt;br&gt;+spend_resources(ectoplasm: int, necrotic: int, spirit: int,&lt;br&gt;bone: int, flesh: int): bool" vertex="1">
+          <mxGeometry height="195" width="910" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="Undead" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="560" width="680" x="850" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="Undead-title" parent="Undead" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="Undead" vertex="1">
+          <mxGeometry height="60" width="680" as="geometry" />
+        </mxCell>
+        <mxCell id="Undead-attributes" parent="Undead" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=23;align=left;verticalAlign=top;spacing=12;" value="-unit_identifier: int&lt;br&gt;#name: str&lt;br&gt;#level: int&lt;br&gt;#health: int&lt;br&gt;#power: int&lt;br&gt;&lt;u&gt;#MINIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MINIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_LEVEL: int&lt;/u&gt;" vertex="1">
+          <mxGeometry height="380" width="680" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Undead-operations" parent="Undead" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+__init__(unit_identifier: int, name: str, health: int, power: int)&lt;br&gt;+level_up(): bool&lt;br&gt;+command(): str" vertex="1">
+          <mxGeometry height="120" width="680" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="SummoningRitual" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="510" width="870" x="1660" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="SummoningRitual-title" parent="SummoningRitual" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="SummoningRitual" vertex="1">
+          <mxGeometry height="60" width="870" as="geometry" />
+        </mxCell>
+        <mxCell id="SummoningRitual-attributes" parent="SummoningRitual" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=23;align=left;verticalAlign=top;spacing=12;" value="-ritual_name: str&lt;br&gt;-summon_class: type&amp;lt;Undead&amp;gt;&lt;br&gt;-ectoplasm_cost: int&lt;br&gt;-necrotic_rune_cost: int&lt;br&gt;-spirit_rune_cost: int&lt;br&gt;-bone_rune_cost: int&lt;br&gt;-flesh_rune_cost: int" vertex="1">
+          <mxGeometry height="272" width="870" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SummoningRitual-operations" parent="SummoningRitual" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+requirements_met(resources: ResourcePool): bool&lt;br&gt;+perform(resources: ResourcePool, undead_id: int): Undead&lt;br&gt;+create_summon(undead_id: int): Undead" vertex="1">
+          <mxGeometry height="178" width="870" y="332" as="geometry" />
+        </mxCell>
+        <mxCell id="WarriorUndead" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="220" width="600" x="260" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="WarriorUndead-title" parent="WarriorUndead" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="WarriorUndead" vertex="1">
+          <mxGeometry height="60" width="600" as="geometry" />
+        </mxCell>
+        <mxCell id="WarriorUndead-operations" parent="WarriorUndead" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+__init__(unit_identifier: int, name: str, health: int, power: int)&lt;br&gt;+command(): str&lt;br&gt;+combat_style(): str" vertex="1">
+          <mxGeometry height="160" width="600" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CursedUndead" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="220" width="600" x="960" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="CursedUndead-title" parent="CursedUndead" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="CursedUndead" vertex="1">
+          <mxGeometry height="60" width="600" as="geometry" />
+        </mxCell>
+        <mxCell id="CursedUndead-operations" parent="CursedUndead" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+__init__(unit_identifier: int, name: str, health: int, power: int)&lt;br&gt;+command(): str&lt;br&gt;+combat_style(): str" vertex="1">
+          <mxGeometry height="160" width="600" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PutridZombie" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="380" width="650" x="1730" y="1180" as="geometry" />
+        </mxCell>
+        <mxCell id="PutridZombie-title" parent="PutridZombie" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="PutridZombie" vertex="1">
+          <mxGeometry height="60" width="650" as="geometry" />
+        </mxCell>
+        <mxCell id="PutridZombie-attributes" parent="PutridZombie" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=23;align=left;verticalAlign=top;spacing=12;" value="&lt;u&gt;#MINIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MINIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_HEALTH: int = 45&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_POWER: int = 10&lt;/u&gt;" vertex="1">
+          <mxGeometry height="236" width="650" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PutridZombie-operations" parent="PutridZombie" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+__init__(unit_identifier: int)&lt;br&gt;+command(): str" vertex="1">
+          <mxGeometry height="84" width="650" y="296" as="geometry" />
+        </mxCell>
+        <mxCell id="SkeletonWarrior" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="400" width="590" x="40" y="2240" as="geometry" />
+        </mxCell>
+        <mxCell id="SkeletonWarrior-title" parent="SkeletonWarrior" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="SkeletonWarrior" vertex="1">
+          <mxGeometry height="60" width="590" as="geometry" />
+        </mxCell>
+        <mxCell id="SkeletonWarrior-attributes" parent="SkeletonWarrior" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=23;align=left;verticalAlign=top;spacing=12;" value="&lt;u&gt;#MINIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MINIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_HEALTH: int = 30&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_POWER: int = 15&lt;/u&gt;" vertex="1">
+          <mxGeometry height="236" width="590" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SkeletonWarrior-operations" parent="SkeletonWarrior" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+__init__(unit_identifier: int)" vertex="1">
+          <mxGeometry height="104" width="590" y="296" as="geometry" />
+        </mxCell>
+        <mxCell id="PhantomGuardian" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="400" width="610" x="650" y="2240" as="geometry" />
+        </mxCell>
+        <mxCell id="PhantomGuardian-title" parent="PhantomGuardian" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="PhantomGuardian" vertex="1">
+          <mxGeometry height="60" width="610" as="geometry" />
+        </mxCell>
+        <mxCell id="PhantomGuardian-attributes" parent="PhantomGuardian" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=23;align=left;verticalAlign=top;spacing=12;" value="&lt;u&gt;#MINIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MINIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_HEALTH: int = 60&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_POWER: int = 35&lt;/u&gt;" vertex="1">
+          <mxGeometry height="236" width="610" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PhantomGuardian-operations" parent="PhantomGuardian" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+__init__(unit_identifier: int)" vertex="1">
+          <mxGeometry height="104" width="610" y="296" as="geometry" />
+        </mxCell>
+        <mxCell id="VengefulGhost" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="400" width="590" x="1300" y="2240" as="geometry" />
+        </mxCell>
+        <mxCell id="VengefulGhost-title" parent="VengefulGhost" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="VengefulGhost" vertex="1">
+          <mxGeometry height="60" width="590" as="geometry" />
+        </mxCell>
+        <mxCell id="VengefulGhost-attributes" parent="VengefulGhost" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=23;align=left;verticalAlign=top;spacing=12;" value="&lt;u&gt;#MINIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MINIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_HEALTH: int = 20&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_POWER: int = 30&lt;/u&gt;" vertex="1">
+          <mxGeometry height="236" width="590" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VengefulGhost-operations" parent="VengefulGhost" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+__init__(unit_identifier: int)" vertex="1">
+          <mxGeometry height="104" width="590" y="296" as="geometry" />
+        </mxCell>
+        <mxCell id="DeathKnight" parent="1" style="group;" value="" vertex="1">
+          <mxGeometry height="510" width="650" x="650" y="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="DeathKnight-title" parent="DeathKnight" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=28;fontStyle=1;align=center;" value="DeathKnight" vertex="1">
+          <mxGeometry height="60" width="650" as="geometry" />
+        </mxCell>
+        <mxCell id="DeathKnight-attributes" parent="DeathKnight" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=23;align=left;verticalAlign=top;spacing=12;" value="&lt;u&gt;#MINIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MINIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#MAXIMUM_POWER: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#HEALTH_GAINED_PER_LEVEL: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#POWER_GAINED_PER_LEVEL: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_HEALTH: int&lt;/u&gt;&lt;br&gt;&lt;u&gt;#STARTING_POWER: int&lt;/u&gt;" vertex="1">
+          <mxGeometry height="308" width="650" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DeathKnight-operations" parent="DeathKnight" style="html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=12;" value="+__init__(unit_identifier: int)&lt;br&gt;+combat_style(): str&lt;br&gt;+compare_combat_styles()" vertex="1">
+          <mxGeometry height="142" width="650" y="368" as="geometry" />
+        </mxCell>
+        <mxCell id="owns" edge="1" parent="1" source="Necromancer" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;startArrow=diamond;startFill=1;endArrow=none;exitX=1;exitY=0.37;entryX=0;entryY=0.31;" target="ResourcePool" value="owns">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="controls" edge="1" parent="1" source="Necromancer" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;startArrow=diamond;startFill=0;endArrow=none;exitX=1;exitY=0.87;entryX=0;entryY=0.43;" target="Undead" value="controls">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="815" y="350" />
+              <mxPoint x="815" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uses" edge="1" parent="1" source="Necromancer" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;endArrow=none;exitX=0.5;exitY=1;entryX=0;entryY=0.32;" target="SummoningRitual" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="482" />
+              <mxPoint x="1570" y="482" />
+              <mxPoint x="1570" y="765" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="checks" edge="1" parent="1" source="SummoningRitual" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endFill=0;exitX=0.55;exitY=0;entryX=0.6;entryY=1;" target="ResourcePool" value="checks">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="creates" edge="1" parent="1" source="SummoningRitual" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endFill=0;exitX=0;exitY=0.44;entryX=1;entryY=0.54;" target="Undead" value="creates">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="own-one" parent="1" style="text;html=1;fontSize=22;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="30" width="48" x="775" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="own-other" parent="1" style="text;html=1;fontSize=22;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="30" width="48" x="1545" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="control-one" parent="1" style="text;html=1;fontSize=22;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="30" width="48" x="750" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="control-many" parent="1" style="text;html=1;fontSize=22;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="30" width="48" x="755" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="uses-one" parent="1" style="text;html=1;fontSize=22;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="30" width="48" x="395" y="437" as="geometry" />
+        </mxCell>
+        <mxCell id="uses-many" parent="1" style="text;html=1;fontSize=22;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="30" width="48" x="1600" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="warrior-base" edge="1" parent="1" source="WarriorUndead" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;endArrow=block;endFill=0;endSize=24;exitY=0;entryY=1;exitX=0.5;entryX=0.21;" target="Undead" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="1150" />
+              <mxPoint x="993" y="1150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cursed-base" edge="1" parent="1" source="CursedUndead" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;endArrow=block;endFill=0;endSize=24;exitY=0;entryY=1;exitX=0.5;entryX=0.6;" target="Undead" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zombie-base" edge="1" parent="1" source="PutridZombie" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;endArrow=block;endFill=0;endSize=24;exitY=0;entryY=1;exitX=0.5;entryX=0.85;" target="Undead" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2055" y="1140" />
+              <mxPoint x="1428" y="1140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="skeleton-warrior" edge="1" parent="1" source="SkeletonWarrior" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;endArrow=block;endFill=0;endSize=24;exitY=0;entryY=1;exitX=0.5;entryX=0.36;" target="WarriorUndead" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="335" y="1530" />
+              <mxPoint x="476" y="1530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="phantom-warrior" edge="1" parent="1" source="PhantomGuardian" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;endArrow=block;endFill=0;endSize=24;exitY=0;entryY=1;exitX=0.5;entryX=0.63;" target="WarriorUndead" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="955" y="2170" />
+              <mxPoint x="610" y="2170" />
+              <mxPoint x="610" y="1500" />
+              <mxPoint x="638" y="1500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ghost-cursed" edge="1" parent="1" source="VengefulGhost" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;endArrow=block;endFill=0;endSize=24;exitY=0;entryY=1;exitX=0.5;entryX=0.5;" target="CursedUndead" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1595" y="1530" />
+              <mxPoint x="1260" y="1530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="death-warrior" edge="1" parent="1" source="DeathKnight" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;endArrow=block;endFill=0;endSize=24;exitY=0;entryY=1;exitX=0.23;entryX=0.87;" target="WarriorUndead" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="1530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="death-cursed" edge="1" parent="1" source="DeathKnight" style="html=1;rounded=0;strokeColor=#333333;fontColor=#111111;fontSize=23;labelBackgroundColor=#ffffff;endArrow=block;endFill=0;endSize=24;exitY=0;entryY=1;exitX=0.75;entryX=0.23;" target="CursedUndead" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="1530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

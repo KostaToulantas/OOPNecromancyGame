@@ -1,7 +1,15 @@
-from undead import Undead
+from undead import (
+    Undead,
+    WarriorUndead,
+    CursedUndead,
+    DeathKnight,
+    SkeletonWarrior,
+    VengefulGhost,
+    PutridZombie,
+    PhantomGuardian,
+)
 from summoning_ritual import SummoningRitual
 from necromancer import Necromancer
-from resource_system import ResourceSystem
 
 # Task 4.8: Create at least four ritual objects.
 SKELETON_WARRIOR_RITUAL = SummoningRitual(
@@ -134,3 +142,13 @@ print(necromancer)
 print()
 print("Remaining controlled undead:")
 display_controlled_undead(necromancer)
+
+print()
+print("Death Knight multiple-inheritance checks:")
+death_knight = DeathKnight(necromancer.next_unit_identifier)
+print(death_knight)
+print(f"Is WarriorUndead: {isinstance(death_knight, WarriorUndead)}")
+print(f"Is CursedUndead: {isinstance(death_knight, CursedUndead)}")
+print(f"Is Undead: {isinstance(death_knight, Undead)}")
+print(f"Combat style: {death_knight.combat_style()}")
+print(f"Command: {death_knight.command()}")

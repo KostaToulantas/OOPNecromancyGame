@@ -1,4 +1,5 @@
 from resource_system import ResourceSystem
+from summoning_ritual import SummoningRitual
 
 
 class Necromancer:

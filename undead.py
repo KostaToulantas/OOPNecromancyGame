@@ -17,6 +17,7 @@ class Undead:
     STARTING_LEVEL = 1
 
     def __init__(self, unit_identifier, name, health, power):
+        """Initialise the summon identity, bounded health and power, and starting level."""
         # Identity details are private because subclasses do not change them.
         # Mutable statistics are protected so inherited behaviour can use them.
         self.__unit_identifier = unit_identifier
@@ -27,18 +28,23 @@ class Undead:
 
     # Task 3.5: Getter methods used by read-only properties.
     def get_unit_identifier(self):
+        """Return the unit identifier."""
         return self.__unit_identifier
 
     def get_name(self):
+        """Return the name."""
         return self.__name
 
     def get_health(self):
+        """Return the health."""
         return self._health
 
     def get_power(self):
+        """Return the power."""
         return self._power
 
     def get_level(self):
+        """Return the level."""
         return self._level
 
     # Task 3.5: Read-only properties using the property() function.
@@ -49,6 +55,7 @@ class Undead:
     level = property(get_level)
 
     def level_up(self):
+        """Increase the level and bounded stats; return False at the maximum level."""
         # Task 3.6: Prevent the undead from exceeding the maximum level.
         if self._level >= self.MAXIMUM_LEVEL:
             return False
@@ -69,6 +76,7 @@ class Undead:
         return f"{self.__name} awaits its necromancer's command."
 
     def __str__(self):
+        """Return the summon identity, level, health, and power as formatted text."""
         # Task 3.7: Display the identifier, name, level, health, and power.
         return (
             f"Undead ID: {self.__unit_identifier}\n"
@@ -79,6 +87,7 @@ class Undead:
         )
 
     def __limit_health(self, health):
+        """Clamp integer health to its bounds, using the minimum for non-integers."""
         if type(health) is not int:
             return self.MINIMUM_HEALTH
 
@@ -91,6 +100,7 @@ class Undead:
         return health
 
     def __limit_power(self, power):
+        """Clamp integer power to its bounds, using the minimum for non-integers."""
         if type(power) is not int:
             return self.MINIMUM_POWER
 
@@ -107,9 +117,11 @@ class WarriorUndead(Undead):
     """Represents an undead creature specialised for battle."""
 
     def __init__(self, unit_identifier, name, health, power):
+        """Pass the identity and stats to the next constructor in the MRO."""
         super().__init__(unit_identifier, name, health, power)
 
     def command(self):
+        """Return the next MRO command with a weapon-ready response appended."""
         parent_command = super().command()
         return f"{parent_command} It raises its weapon, ready for battle."
 
@@ -122,9 +134,11 @@ class CursedUndead(Undead):
     """Represents an undead creature empowered by a curse."""
 
     def __init__(self, unit_identifier, name, health, power):
+        """Pass the identity and stats to the next constructor in the MRO."""
         super().__init__(unit_identifier, name, health, power)
 
     def command(self):
+        """Return the next MRO command with a cursed-energy response appended."""
         parent_command = super().command()
         return f"{parent_command} Cursed energy gathers around it."
 
@@ -147,6 +161,7 @@ class DeathKnight(WarriorUndead, CursedUndead):
     POWER_GAINED_PER_LEVEL = 20
 
     def __init__(self, unit_identifier):
+        """Initialise a Death Knight with the supplied ID and its specialised starting stats."""
         super().__init__(
             unit_identifier,
             self.SUMMON_NAME,
@@ -180,6 +195,7 @@ class SkeletonWarrior(WarriorUndead):
     STARTING_POWER = 15
 
     def __init__(self, unit_identifier):
+        """Initialise a Skeleton Warrior with the supplied ID and its specialised starting stats."""
         super().__init__(
             unit_identifier,
             self.SUMMON_NAME,
@@ -200,6 +216,7 @@ class VengefulGhost(CursedUndead):
     STARTING_POWER = 30
 
     def __init__(self, unit_identifier):
+        """Initialise a Vengeful Ghost with the supplied ID and its specialised starting stats."""
         super().__init__(
             unit_identifier,
             self.SUMMON_NAME,
@@ -220,6 +237,7 @@ class PutridZombie(Undead):
     STARTING_POWER = 10
 
     def __init__(self, unit_identifier):
+        """Initialise a Putrid Zombie with the supplied ID and its specialised starting stats."""
         super().__init__(
             unit_identifier,
             self.SUMMON_NAME,
@@ -228,6 +246,7 @@ class PutridZombie(Undead):
         )
 
     def command(self):
+        """Return the inherited command with the zombie movement response appended."""
         parent_command = super().command()
         return f"{parent_command} It shambles forward relentlessly."
 
@@ -244,6 +263,7 @@ class PhantomGuardian(WarriorUndead):
     STARTING_POWER = 35
 
     def __init__(self, unit_identifier):
+        """Initialise a Phantom Guardian with the supplied ID and its specialised starting stats."""
         super().__init__(
             unit_identifier,
             self.SUMMON_NAME,

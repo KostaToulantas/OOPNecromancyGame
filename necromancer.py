@@ -19,6 +19,7 @@ class Necromancer:
         flesh_runes=ResourceSystem.MINIMUM_VALID_RESOURCE_QUANTITY,
         ectoplasm=ResourceSystem.MINIMUM_VALID_RESOURCE_QUANTITY,
     ):
+        """Create a named necromancer with owned resources and an empty summon list."""
         # Task 1.1 and 1.2: The Necromancer creates and owns its resources.
         self.__name = name
         self.__resources = ResourceSystem(
@@ -33,15 +34,19 @@ class Necromancer:
 
     # Task 1.2: Getter methods used by read-only properties.
     def get_name(self):
+        """Return the name."""
         return self.__name
 
     def get_resources(self):
+        """Return the ResourceSystem owned by this necromancer."""
         return self.__resources
 
     def get_controlled_undead(self):
+        """Return the internal list of summons currently controlled by this necromancer."""
         return self.__controlled_undead
 
     def get_next_unit_identifier(self):
+        """Return the identifier that will be assigned to the next successful summon."""
         return self.__next_unit_identifier
 
     name = property(get_name)
@@ -57,6 +62,7 @@ class Necromancer:
         flesh_runes,
         ectoplasm,
     ):
+        """Delegate resource collection and return whether all amounts were valid."""
         # Task 1.2: Delegate resource changes to the ResourceSystem object.
         return self.__resources.collect_resources(
             necrotic_runes,
@@ -67,6 +73,7 @@ class Necromancer:
         )
 
     def summon_undead(self, ritual):
+        """Spend ritual resources and return a controlled summon, or None if requirements fail."""
         # Task 1.4: Require a SummoningRitual and enough resources.
         if not isinstance(ritual, SummoningRitual):
             return None
@@ -89,6 +96,7 @@ class Necromancer:
         return undead
 
     def dismiss_undead(self, unit_identifier):
+        """Remove the controlled summon with the given ID and return whether it was found."""
         # Task 1.5 and 1.6: Use the helper to find and remove a summon.
         undead = self.__find_controlled_summon(unit_identifier)
 
@@ -108,6 +116,7 @@ class Necromancer:
         return undead.command()
 
     def level_controlled_undead(self, unit_identifier):
+        """Level the summon with the given ID; return False if absent or at its level limit."""
         # Task 1.7: Find a summon, then delegate levelling to the undead object.
         undead = self.__find_controlled_summon(unit_identifier)
 
@@ -117,6 +126,7 @@ class Necromancer:
         return undead.level_up()
 
     def __str__(self):
+        """Return the name, controlled summon count, next ID, and available resources."""
         controlled_count = len(self.__controlled_undead)
 
         return (
@@ -127,6 +137,7 @@ class Necromancer:
         )
 
     def __find_controlled_summon(self, unit_identifier):
+        """Return the controlled summon matching the given ID, or None if absent."""
         # Task 1.6: Private helper for locating controlled undead by ID.
         for undead in self.__controlled_undead:
             if undead.unit_identifier == unit_identifier:

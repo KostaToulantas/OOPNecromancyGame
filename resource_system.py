@@ -9,6 +9,7 @@ class ResourceSystem:
                  bone_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
                  flesh_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
                  ectoplasm=MINIMUM_VALID_RESOURCE_QUANTITY):
+        """Store starting resources, setting all amounts to zero if any amount is invalid."""
         # Task 2.1 and Task 2.2: Store the five resources privately as integers.
         # If any starting amount is invalid, every resource begins at 0.
         if self.__is_valid_resource_collection(
@@ -32,18 +33,23 @@ class ResourceSystem:
 
     # Task 2.3: Getter methods used by read-only properties.
     def get_necrotic_runes(self):
+        """Return the necrotic runes."""
         return self.__necrotic_runes
 
     def get_spirit_runes(self):
+        """Return the spirit runes."""
         return self.__spirit_runes
 
     def get_bone_runes(self):
+        """Return the bone runes."""
         return self.__bone_runes
 
     def get_flesh_runes(self):
+        """Return the flesh runes."""
         return self.__flesh_runes
 
     def get_ectoplasm(self):
+        """Return the ectoplasm."""
         return self.__ectoplasm
 
     # Task 2.3: Read-only properties using the property() function.
@@ -61,6 +67,7 @@ class ResourceSystem:
         flesh_runes,
         ectoplasm,
     ):
+        """Add non-negative integer amounts; return False without changes if any are invalid."""
         # Task 2.4: Validate all collected quantities before changing state.
         if not self.__is_valid_resource_collection(
             necrotic_runes,
@@ -87,6 +94,7 @@ class ResourceSystem:
         required_flesh_runes,
         required_ectoplasm,
     ):
+        """Return whether all costs are non-negative integers covered by available resources."""
         # Task 2.5: Check whether all required resources are available.
         if not self.__is_valid_resource_collection(
             required_necrotic_runes,
@@ -113,6 +121,7 @@ class ResourceSystem:
         required_flesh_runes,
         required_ectoplasm,
     ):
+        """Deduct all costs if affordable and valid; otherwise return False without changes."""
         # Task 2.6: Check all requirements before spending any resource.
         if not self.has_required_resources(
             required_necrotic_runes,
@@ -132,6 +141,7 @@ class ResourceSystem:
         return True
 
     def __str__(self):
+        """Return the available quantities of all five resources as formatted text."""
         # Task 2.8: Clearly display the available resources.
         return (
             f"Necrotic Runes: {self.__necrotic_runes}\n"
@@ -149,6 +159,7 @@ class ResourceSystem:
         flesh_runes,
         ectoplasm,
     ):
+        """Return whether every quantity is a non-negative integer, excluding booleans."""
         # Task 2.2 and 2.4: Each resource quantity must be an integer
         # and cannot be below the minimum valid quantity.
         return (

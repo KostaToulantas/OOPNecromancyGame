@@ -65,6 +65,7 @@ DEATH_KNIGHT_RITUAL = SummoningRitual(
 
 
 def display_controlled_undead(necromancer):
+    """Print each controlled summon, or a message if the necromancer controls none."""
     if len(necromancer.controlled_undead) == 0:
         print("No controlled undead.")
     else:

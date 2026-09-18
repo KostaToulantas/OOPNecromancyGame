@@ -155,6 +155,20 @@ class DeathKnight(WarriorUndead, CursedUndead):
         )
 
 
+    def combat_style(self):
+        """Use the next combat style implementation in the MRO."""
+        return super().combat_style()
+
+    def compare_combat_styles(self):
+        """Select each parent's combat style explicitly for comparison."""
+        warrior_style = WarriorUndead.combat_style(self)
+        cursed_style = CursedUndead.combat_style(self)
+        return (
+            f"WarriorUndead (explicit call): {warrior_style}\n"
+            f"CursedUndead (explicit call): {cursed_style}"
+        )
+
+
 class SkeletonWarrior(WarriorUndead):
     """A lightly armoured warrior raised from bones."""
 

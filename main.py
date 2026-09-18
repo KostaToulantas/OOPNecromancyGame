@@ -53,6 +53,17 @@ PHANTOM_GUARDIAN_RITUAL = SummoningRitual(
 )
 
 
+DEATH_KNIGHT_RITUAL = SummoningRitual(
+    "Raise Death Knight",
+    DeathKnight,
+    4,
+    6,
+    4,
+    5,
+    6,
+)
+
+
 def display_controlled_undead(necromancer):
     if len(necromancer.controlled_undead) == 0:
         print("No controlled undead.")
@@ -137,21 +148,30 @@ print(f"Dismissed: {dismissed}")
 print(f"Controlled undead count: {len(necromancer.controlled_undead)}")
 
 print()
-print("Final necromancer state:")
+print("Necromancer state before summoning the Death Knight:")
 print(necromancer)
 print()
 print("Remaining controlled undead:")
 display_controlled_undead(necromancer)
 
 print()
-print("Death Knight multiple-inheritance checks:")
-death_knight = DeathKnight(necromancer.next_unit_identifier)
+print("Death Knight ritual:")
+print(DEATH_KNIGHT_RITUAL)
+print()
+print("Collecting resources for the Death Knight:")
+necromancer.collect_resources(4, 6, 4, 5, 6)
+print(necromancer.resources)
+death_knight = necromancer.summon_undead(DEATH_KNIGHT_RITUAL)
+print()
+print("Death Knight summoned through the necromancer:")
 print(death_knight)
+print("Death Knight multiple-inheritance checks:")
 print(f"Is WarriorUndead: {isinstance(death_knight, WarriorUndead)}")
 print(f"Is CursedUndead: {isinstance(death_knight, CursedUndead)}")
 print(f"Is Undead: {isinstance(death_knight, Undead)}")
 print(f"Combat style: {death_knight.combat_style()}")
-print(f"Command: {death_knight.command()}")
+print("Command through the necromancer:")
+print(necromancer.command_controlled_undead(death_knight.unit_identifier))
 
 print()
 print("Death Knight method resolution order:")
@@ -163,3 +183,14 @@ print()
 print("Explicit parent combat styles:")
 print(death_knight.compare_combat_styles())
 print("super() follows the MRO. Explicit class calls select the named parent's method.")
+
+print()
+print("Death Knight after levelling through the necromancer:")
+necromancer.level_controlled_undead(death_knight.unit_identifier)
+print(death_knight)
+print()
+print("Final necromancer state:")
+print(necromancer)
+print()
+print("Remaining controlled undead:")
+display_controlled_undead(necromancer)

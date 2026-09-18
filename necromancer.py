@@ -98,6 +98,15 @@ class Necromancer:
         self.__controlled_undead.remove(undead)
         return True
 
+    def command_controlled_undead(self, unit_identifier):
+        """Delegate a command to a controlled summon, or return None if absent."""
+        undead = self.__find_controlled_summon(unit_identifier)
+
+        if undead is None:
+            return None
+
+        return undead.command()
+
     def level_controlled_undead(self, unit_identifier):
         # Task 1.7: Find a summon, then delegate levelling to the undead object.
         undead = self.__find_controlled_summon(unit_identifier)

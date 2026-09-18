@@ -154,7 +154,6 @@ class DeathKnight(WarriorUndead, CursedUndead):
             self.STARTING_POWER,
         )
 
-
     def combat_style(self):
         """Use the next combat style implementation in the MRO."""
         return super().combat_style()

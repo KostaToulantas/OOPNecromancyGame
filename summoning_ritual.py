@@ -11,9 +11,16 @@ class SummoningRitual:
     # Task 4.3: Rune costs can be 0, so this is the minimum Rune cost.
     MINIMUM_RUNE_COST = 0
 
-    def __init__(self, ritual_name, summon_class, necrotic_rune_cost,
-                 spirit_rune_cost, bone_rune_cost, flesh_rune_cost,
-                 ectoplasm_cost):
+    def __init__(
+        self,
+        ritual_name,
+        summon_class,
+        necrotic_rune_cost,
+        spirit_rune_cost,
+        bone_rune_cost,
+        flesh_rune_cost,
+        ectoplasm_cost,
+    ):
         """Store the ritual and bounded costs; raise TypeError if summon_class is not an Undead class."""
         # Task 4.1: Store information about the ritual and its result.
         if not isinstance(summon_class, type) or not issubclass(

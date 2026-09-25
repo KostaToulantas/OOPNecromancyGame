@@ -4,11 +4,14 @@ class ResourceSystem:
     # Task 2.7: Constant representing the minimum valid resource quantity.
     MINIMUM_VALID_RESOURCE_QUANTITY = 0
 
-    def __init__(self, necrotic_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
-                 spirit_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
-                 bone_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
-                 flesh_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
-                 ectoplasm=MINIMUM_VALID_RESOURCE_QUANTITY):
+    def __init__(
+        self,
+        necrotic_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
+        spirit_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
+        bone_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
+        flesh_runes=MINIMUM_VALID_RESOURCE_QUANTITY,
+        ectoplasm=MINIMUM_VALID_RESOURCE_QUANTITY,
+    ):
         """Store starting resources, setting all amounts to zero if any amount is invalid."""
         # Task 2.1 and Task 2.2: Store the five resources privately as integers.
         # If any starting amount is invalid, every resource begins at 0.
